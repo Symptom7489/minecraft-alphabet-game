@@ -1,5 +1,5 @@
 <template>
-  <img :src="mcImage" >
+  <img class="minecraft-image" :src="mcImage">
   <h2></h2>
 </template>
 
@@ -15,6 +15,10 @@ export default {
 }
 </script>
 
-<style scoped>
 
+<style scoped>
+.minecraft-image {
+width: 200px;
+height: 200px;
+}
 </style>
