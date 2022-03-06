@@ -1,6 +1,6 @@
 <template>
   <start-page v-if="!gameStart" @startGame="getRandomItem"></start-page>
-<score-board v-if="gameStart" :score="this.score" ></score-board>
+  <score-board v-if="gameStart" :score="this.score"></score-board>
   <div class="grid place-items-center grid-flow-column-dense grid-cols-2 h-screen" v-if="gameStart">
     <div class="">
       <photo-tile
@@ -11,6 +11,7 @@
     </div>
     <div class="">
       <answer-tile
+          @replay-voice="replayVoice"
           @reset-game="resetGame"
           @new-item="nextItem"
           :key="minecraftItemList.id"
@@ -74,6 +75,11 @@ export default {
     resetGame() {
       this.score = 0;
       this.gameStart = false;
+    },
+    replayVoice() {
+      const msg = new SpeechSynthesisUtterance();
+      msg.text = this.minecraftItemList.name + ' the letter ' + this.minecraftItemList.name[0];
+      window.speechSynthesis.speak(msg);
     }
   }
 }
