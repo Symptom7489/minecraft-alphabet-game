@@ -1,25 +1,30 @@
 <template>
   <start-page v-if="!gameStart" @startGame="getRandomItem"></start-page>
 
-<div class="grid place-items-center grid-flow-column-dense grid-cols-2 h-screen" v-if="gameStart">
- <div class=""><photo-tile
-      :key="minecraftItemList.id"
-      :name="minecraftItemList.name"
-      :image="minecraftItemList.icon"
-  ></photo-tile></div>
-   <div class=""> <answer-tile
-        @new-item="getRandomItem"
-        :key="minecraftItemList.id"
-      :id="minecraftItemList.id"
-      :name="minecraftItemList.name"
-    ></answer-tile></div>
+  <div class="grid place-items-center grid-flow-column-dense grid-cols-2 h-screen" v-if="gameStart">
+    <div class="">
+      <photo-tile
+          :key="minecraftItemList.id"
+          :name="minecraftItemList.name"
+          :image="minecraftItemList.icon"
+      ></photo-tile>
+    </div>
+    <div class="">
+      <answer-tile
+          @new-item="getRandomItem"
+          :key="minecraftItemList.id"
+          :id="minecraftItemList.id"
+          :name="minecraftItemList.name"
+      ></answer-tile>
+    </div>
   </div>
- </template>
+</template>
 
 <script>
 import PhotoTile from "@/components/PhotoTile";
 import AnswerTile from "@/components/AnswerTile";
 import StartPage from "@/components/StartPage";
+
 const minecraftItems = require('minecraft-items');
 
 
@@ -51,11 +56,17 @@ export default {
       const randomItem = minecraftItems.find(this.randomWord);
       this.minecraftItemList = randomItem[0];
       console.log(this.minecraftItemList);
+
+      const msg = new SpeechSynthesisUtterance();
+      msg.text = this.minecraftItemList.name + ' the letter ' + this.minecraftItemList.name[0];
+      window.speechSynthesis.speak(msg);
+
       this.gameStart = true;
 
 
     }
-    }}
+  }
+}
 </script>
 
 <style>
