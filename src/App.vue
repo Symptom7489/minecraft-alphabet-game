@@ -1,6 +1,6 @@
 <template>
   <start-page v-if="!gameStart" @startGame="getRandomItem"></start-page>
-
+<score-board v-if="gameStart" :score="this.score" ></score-board>
   <div class="grid place-items-center grid-flow-column-dense grid-cols-2 h-screen" v-if="gameStart">
     <div class="">
       <photo-tile
@@ -11,7 +11,8 @@
     </div>
     <div class="">
       <answer-tile
-          @new-item="getRandomItem"
+          @reset-game="resetGame"
+          @new-item="nextItem"
           :key="minecraftItemList.id"
           :id="minecraftItemList.id"
           :name="minecraftItemList.name"
@@ -24,6 +25,7 @@
 import PhotoTile from "@/components/PhotoTile";
 import AnswerTile from "@/components/AnswerTile";
 import StartPage from "@/components/StartPage";
+import ScoreBoard from "@/components/ScoreBoard";
 
 const minecraftItems = require('minecraft-items');
 
@@ -34,6 +36,7 @@ export default {
     PhotoTile,
     StartPage,
     AnswerTile,
+    ScoreBoard,
   },
 
   data() {
@@ -41,6 +44,7 @@ export default {
       randomWord: '',
       minecraftItemList: [],
       gameStart: false,
+      score: 0,
 
     };
   },
@@ -62,8 +66,14 @@ export default {
       window.speechSynthesis.speak(msg);
 
       this.gameStart = true;
-
-
+    },
+    nextItem() {
+      this.score++;
+      this.getRandomItem();
+    },
+    resetGame() {
+      this.score = 0;
+      this.gameStart = false;
     }
   }
 }
