@@ -1,6 +1,5 @@
 <template>
-  <img class="minecraft-image" :src="mcImage">
-  <h2></h2>
+<img class="minecraft-image" :src="mcImage" style="width:200px; height:200px; image-rendering: pixelated">
 </template>
 
 <script>
@@ -17,8 +16,5 @@ export default {
 
 
 <style scoped>
-.minecraft-image {
-width: 200px;
-height: 200px;
-}
+
 </style>

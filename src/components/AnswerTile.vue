@@ -1,8 +1,7 @@
 <template>
-<h1 class="answer-text">{{ name }}</h1>
-  <input class="input-box" type="text" v-model.trim="inputLetter" id="inputLetter">
-  <label for="inputLetter"> Enter the Letter Here!</label>
-  <button @click="tryAnswer"> LET'S GO!</button>
+  <div class="ml-20 shadow border-black border-2 border-stone-900 h-32 w-32 bg-green-300"><h1 class="mt-12 ml-8">{{ name }}</h1></div>
+  <div><input ref="inputBox" v-model="inputLetter" @keyup.enter="tryAnswer" class="mt-4 bg-green-300 shadow appearance-none border rounded w-full py-2 px-3 text-2xl text-black-300 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter Letter Here!"></div>
+
 
 </template>
 
@@ -20,7 +19,6 @@ export default {
   methods: {
     tryAnswer() {
       if (this.firstLetter.toLowerCase() === this.inputLetter.toLowerCase()) {
-        alert('Great Job!');
         this.$emit('new-item');
       } else {
         alert('Try Again!');
@@ -32,9 +30,5 @@ export default {
 </script>
 
 <style scoped>
-.answer-text {
-  font-size: 5rem;
-  font-weight: 500;
-  text-align: center;
-}
+
 </style>

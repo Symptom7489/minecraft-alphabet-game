@@ -1,6 +1,7 @@
 <template>
-<h1>Start Page</h1>
-  <button @click="newGame">Start Game!</button>
+  <div class="grid place-items-center h-screen">
+  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" @click="newGame">Start Game!</button>
+</div>
 </template>
 
 <script>

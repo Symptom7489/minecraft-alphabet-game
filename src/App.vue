@@ -1,22 +1,19 @@
 <template>
   <start-page v-if="!gameStart" @startGame="getRandomItem"></start-page>
-<div class="container" v-if="gameStart">
-<div class="container-item">
-  <photo-tile
+
+<div class="grid place-items-center grid-flow-column-dense grid-cols-2 h-screen" v-if="gameStart">
+ <div class=""><photo-tile
       :key="minecraftItemList.id"
       :name="minecraftItemList.name"
       :image="minecraftItemList.icon"
-  ></photo-tile>
-</div>
-  <div class="container-item">
-    <answer-tile
+  ></photo-tile></div>
+   <div class=""> <answer-tile
         @new-item="getRandomItem"
         :key="minecraftItemList.id"
       :id="minecraftItemList.id"
       :name="minecraftItemList.name"
-    ></answer-tile>
+    ></answer-tile></div>
   </div>
-</div>
  </template>
 
 <script>
@@ -62,25 +59,7 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  background-color: rgb(22 163 74);
 }
-.container {
-  display: flex;
-  justify-content: center;
-  background-color: blue;
-  color: grey;
-  margin: 1rem;
-  padding: 1rem;
-}
-.container-item {
-  justify-content: center;
-  margin: 1rem;
-  padding: 1rem;
-  }
 </style>
